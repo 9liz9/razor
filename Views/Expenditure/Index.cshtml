@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Expenditure>
+
+<table>
+    <tr>
+        <th>Nom</th>
+        <th>Date</th>
+        <th>Prix</th>
+    </tr>
+    @if (Model != null)
+    {
+        @foreach (var expenditure in Model)
+        {
+            <tr>
+                <td>@expenditure.Name</td>
+                <td>@expenditure.Date.ToShortDateString()</td>
+                <td>@expenditure.Price €</td>
+            </tr>
+        }
+        <tr>
+            <td colspan="2">Total :</td>
+            <td>@Model.Sum(e => e.Price) €</td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+            <td colspan="3">Aucune dépense à afficher.</td>
+        </tr>
+    }
+</table>
